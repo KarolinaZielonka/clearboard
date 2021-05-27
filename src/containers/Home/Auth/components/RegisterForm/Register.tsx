@@ -1,43 +1,8 @@
-import styled from 'styled-components';
 import { useFormik } from 'formik';
-import { Button, TextField, Typography } from '@material-ui/core';
 import { Container } from 'components/Layout';
 import { useHistory } from 'react-router-dom';
+import { Form, Box, StyledTextField, SubmitButton, StyledTypography } from '../LoginForm/styles';
 
-const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    height: 400px;
-    width: 500px;
-    border: 3px solid rgba(126, 186, 181, 1);
-    border-radius: 10px;
-    padding: 15px;
-`;
-const Box = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items:center;
-    justify-content:center;
-    padding: 15px;
-`;
-const StyledTextField = styled(TextField)`
-    width:80%;
-    margin-left:10px;
-    background-color: rgba(202, 240, 250, 0.2);
-`;
-const StyledTypography = styled(Typography)`
-    width:20%;
-    text-align: center;
-`;
-const SubmitButton = styled(Button)`
-    background-color:rgba(126, 186, 181, 1);
-    width:20%;
-    margin: auto;
-    color: white;
-    &:hover{
-        background-color:rgba(126, 186, 181, 0.8);
-    }
-`;
 const Register: React.FC = () => {
     const history = useHistory();
 

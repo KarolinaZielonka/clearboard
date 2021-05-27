@@ -1,11 +1,14 @@
-import { AppBar, Button, Divider, Drawer, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Button, Divider, Drawer, IconButton, Toolbar } from '@material-ui/core';
 import {
     Menu as MenuIcon,
     ChevronLeft as ChevronLeftIcon
 } from '@material-ui/icons';
-
+import { StyledTypography } from './styles';
 import * as React from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
+import useStore from 'hooks/useStore';
+import { useHistory } from 'react-router-dom';
 
 type NavbarProps = {
   component: React.ComponentType;
@@ -17,6 +20,8 @@ const AppDrawer = styled(Drawer)`
 
 const Navbar: React.FC<NavbarProps> = ({ component: Component }) => {
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+    const history = useHistory();
+    const store = useStore();
     return (
         <>
             <AppBar position="static">
@@ -32,10 +37,12 @@ const Navbar: React.FC<NavbarProps> = ({ component: Component }) => {
                             </IconButton>
                         )
                     }
-                    <Typography variant="h6">
-                        News
-                    </Typography>
                     <Button color="inherit">Login</Button>
+                    {store.boardStore.boardId && <Button onClick={()=>{history.push('/dashboard');}} color="inherit">Dashboard</Button>}
+                    
+                    <StyledTypography variant="h6">
+                        {store.boardStore.boardId ? 'Board: ' + store.boardStore.boardId : 'dashboard'}
+                    </StyledTypography>
                 </Toolbar>
             </AppBar>
             <AppDrawer data-testingId="drawer" anchor="left" open={isDrawerOpen} >
@@ -50,4 +57,4 @@ const Navbar: React.FC<NavbarProps> = ({ component: Component }) => {
     );
 };
 
-export default Navbar;
+export default observer(Navbar);

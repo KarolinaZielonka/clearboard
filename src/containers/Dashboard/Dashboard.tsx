@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { observer } from 'mobx-react-lite';
+import useStore from 'hooks/useStore';
 
 const mockBoards = [
     {
@@ -14,6 +16,9 @@ const mockBoards = [
 ];
 
 const Dashboard: React.FC = () => {
+    const asd = useStore();
+    asd.boardStore.updateBoardId('');
+    
     return (
         <>
             {
@@ -28,4 +33,4 @@ const Dashboard: React.FC = () => {
     );
 };
 
-export default Dashboard;
+export default observer(Dashboard);
